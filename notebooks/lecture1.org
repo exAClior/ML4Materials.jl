@@ -1,0 +1,63 @@
+#+TITLE: First Lecture
+
+* Over arching idea
+Machine learning provides a model free approach to analyzing and manipulating
+data comparing to statistical model.
+
+** Example: 1D Fitting problem
+- Given a dataset and we are trying to fit a linear equation to it.
+- Convert it to linear algebra.
+  1) \(y = ax +b\)
+  2) \(\hat{Y} = \hat{X} \beta\), get \(\hat{X}^{-1}\) to get \(\beta\)
+  3) This problem may be highly over-determined as we may have too many data
+     points to determine \(\beta\)
+  4) \(\hat{\beta} = (\hat{X}^{T}\hat{X})^{-1}\hat{X}^{T}\hat{Y}\), which gives
+    least square fitting. \(\hat{\beta}\) is the solution to the *convex
+    optimization* problem. (One that is guaranteed to have one and only one
+    best solution.)
+
+  5) [[https://en.wikipedia.org/wiki/Gauss%E2%80%93Markov_theorem][Gauss Markov theorem]], as the number of data points grows, \(\hat{\beta}\)
+     approached the true \(\beta\), plus the approximation also has the smallest
+     variance.
+
+ - Implement those!!!
+** Machine Learning Approach
+- You have a neural network that has the expressibility of a large function
+  space worth of functions.
+- Loss function is almost always *non-convex* which makes sense since otherwise,
+  why bother.
+- Population risk: expceted loss?
+
+* Machine Learning Basic Concepts
+- Supervised Learning
+  1) Learning with labels
+- Unsupervised Learning
+  1) Without labels
+- Reinforcement Learning
+  1) Learning to make optimal decision
+
+** Deep Learning
+- Given a two layer neural network examples to represent an arbitrary function
+  in the function space
+- [[https://en.wikipedia.org/wiki/Hodgkin%E2%80%93Huxley_model][Model of Neuron]] like activation function
+*** Typeof activation function
+1) ReLU, non-linearity is at the origin
+2) Sigmoid
+3) Tanh
+4) Possible to use sin and cos
+
+*** Requirements of Activation function
+1) It cannot be polynomial. One neuron is equivalent to multiple neurons added
+   in the same layer. (Linearity)
+
+*** Universal approximation theorem
+- If the activation function is non-linear and not a polynomial. Then, for any
+  function \(f(x)\).
+- If m, number of neurons, is large enough, the neural network can approximate
+  abritrary function.
+- this is only for *two* layer neural network
+*** Training method
+- Gradient Descend
+- Stochastic Gradient Descend
+  1) Random batch sampling: compare to gradient descend, only evaluate the loss
+     by summing a batch of training data at each step.
