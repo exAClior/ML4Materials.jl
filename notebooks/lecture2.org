@@ -63,3 +63,32 @@
   1) Monte Carlo \( \frac{1}{n}\sum_{i=1}^{n}f(x_{i})\)
   2) ML \(1/m \sum_{i}^{m} a_{j}\sigma(w_{j}x_{i} + b_{j})\), similarily we observe that
      m is independent to \(d\)
+** One more about dimensionality
+- The effectiveness of monte carlo is because our problem is inherently on a
+  sub-manifold of high dimensional problem.
+- If the problem is inherently high dimension, things don't work too well.
+
+* Preliminaries on CNN
+** Application: Image Classification
+** Learn from probability distribution
+- Loss function: cross entropy loss which is based on information amount ...
+*** Information Defintion
+- Information give by a random variable (uncertainty)
+- \(p(x_{0} = P(X) , x \in X\)
+- Information: \(I(x_{0}) = - log(p(x_{0}))\)
+*** Entropy:
+- Def: Expectation of information \( p log(p)\)
+*** Cross Entropy
+- Information difference between two distributions
+- \(P_{a} = [1,0,0]\) for all possible \(x\): note, it has to be just 1 for one
+  term and all zero other terms since it's labelled data.
+- \(P_{b} = [0.8, 0.1, 0.1]\), our prediction from CNN
+- \(L_{ce}(P_{a},P_{b}) = - \sum_{x} p_{a}(x) log(p_{b}(x)) + (1- p_{a}(x)) log (
+    1 - p_{b}(x))\), note the crossing of probability and log term, hence the
+    name
+
+*** Image Invariance:
+If you rotate the image of a person by some degrees, the classification CNN
+should also recognize the rotated version of the picture.
+
+*** Scale Invariance
