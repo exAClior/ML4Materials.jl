@@ -1,0 +1,65 @@
+#+TITLE: Lecture 2
+
+* Review
+- Data regression with Neural Network
+- Universal approximation theorem
+
+
+* Training of Neural Network
+- Target: Loss function
+- Method: Gradient Descent
+- Mathematics: Chain rule
+
+** Problem with deep neural network
+- It's expensive to calculate the gradient of a deep neural network in the
+  forward way
+- People do *back propogation*
+
+** Error Analysis
+*** Approximation error
+- In the sense of universal approximation theorem. I.e the goal is to
+  approximate \(f^{*}\) but the neural network could only approximate \(f^{D}\)
+- Error: \(||f^{*}-f^{D}||\)
+- Eg. 1: 1 Layer NN: *XOR problem* could not be approximated with 1 layer nn
+  [[https://dev.to/jbahire/demystifying-the-xor-problem-1blk][Reference]]
+- Eg. 2: *Generalization error* is \(||f_{D} - f_{S}||\)
+  where \(f_{D}\) is the best approximation of NN and \(f_{S}\) is the best
+  function to be learned by the given data set S
+- Eg. 3: Optimization error is \(||f_{\theta} - f_{S}||\), not our concern here
+  \(f_{\theta}\) is the best approximation function that can be learned by a given NN
+  structure and given data and given optimization algorithm
+
+*** Summary
+- Error \(f_{\theta} - f^{*} = (f_{\theta} - f_{S}) + (f_{S} - f_{D}) + (f_{D} - f^{*}) \)
+- Meaning, they sum up the previous three errors
+
+** Motivation for using Deep Learning
+- Solve high dimensional problem
+*** Why can DNN can help solve high dimensional problem?
+- We don't have a mathematical theory
+- But we could try to understand analyzing following problems:
+**** Integration problem
+- Integration in low dimension is easy but also hard in high dimension
+- In 1D middle point integartion method has error is like \(1/n^{2}\) but in
+  d-dimension integration, you have \(1/n^{2/d}\), i.e the error drops very slowly
+- In fact, the MD simulation problem is very similar to the integration in high dimension. (Trajectory calculation using Newton mechanics is adding \(v*dt\) + \(1/2 * a * dt^{2}\) to position and \( a* dt\) to velocity).
+
+** Alternative to MD: Monte Carlo
+*** Monte Carlo is just integration
+- \(I = \int f(x) dx = \int f(x) * p(x) dx\) where \(p(x)\) is uniform distribution.
+- The last equals the \(<f(x)>\). You could sample \(x\) with uniform
+  distribution, sum up corresponding \(f(x)\) and divide by the number of
+  samples to get expectation value.
+**** Error
+- Since we calculate expectation value by sampling, our error for estimation of
+  expectation value is the same as variance , but it converges like \(1/n\) and
+  s.t.d is like \(1/n^{1/2}\). which is slow convergent but it is *independent*
+  of problem dimension.
+- *Use MD if dimension of problem is at least 4* because the convergence penalty
+  of sampling is better than integration penalty in high dimension.
+
+*** Similarity of MD and Monte Carlo
+- Their format is similiar
+  1) Monte Carlo \( \frac{1}{n}\sum_{i=1}^{n}f(x_{i})\)
+  2) ML \(1/m \sum_{i}^{m} a_{j}\sigma(w_{j}x_{i} + b_{j})\), similarily we observe that
+     m is independent to \(d\)
