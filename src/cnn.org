@@ -1,0 +1,40 @@
+#+TITLE: CNN Book Reading
+
+* Question
+What's up with the number of features? in Figure 5-1 and figure 5-2
+
+* What's it
+- Neural network for images.
+
+* High level
+** General deep neural network
+There's a lot of features embeded in the image. Throuh layers of neural network,
+we could generate a *linear combination* of all these features. The linear
+combination that generates the most fit towards the data is the one we target.
+
+*** Representation Learning
+- The process of learning the linear combination of features.
+
+** Convolutional neural network
+Correlation length between data points is finite. It's therefore sensible to
+have *linear combination* of features that's locally close in the neural
+network. This is the idea behind CNN.
+
+*** Steps
+- Convolution of a region of features -> activation function + bias -> turn into new *learned* feature in the next layer.
+- The final output is called *feature map*
+- The number of feature maps in a layer of CNN is called *number of channels*.
+- Note: this is only 1 layer of a CNN.
+
+*** Forming a network
+- Assuming  the first layer has \(m_{1}\) features.
+- In the second layer, each point in graph is obtained by convolving the size
+  \(m_{1}\) points in the same location in graph but in previous layer.
+
+** Difference bewtwwn CNN and fully connected
+- Fully connected: each neuron (activation + bias) has the out put that means the feature obtianed in the whole \(n\) dimensional input data is present.
+- CNN: whether the feature from a region in the data or middle layer is present.
+
+** Use Flatten Layer to obtian probability
+- If you want to distinguish between $k$ different objects, the ~flatten~ is
+  used to do so.
