@@ -38,3 +38,13 @@ network. This is the idea behind CNN.
 ** Use Flatten Layer to obtian probability
 - If you want to distinguish between $k$ different objects, the ~flatten~ is
   used to do so.
+
+** Down sampling
+- Used to improve computational efficiency in the cost of obtaining less
+  information.
+
+*** Pooling
+- Choosing to keep 1 out of k elements in the original data
+
+*** Stride
+- Convolve with every other $k_{th}$ element.
