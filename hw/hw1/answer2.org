@@ -1,0 +1,21 @@
+#+TITLE: Homework 1
+#+AUTHOR: Yusheng Zhao
+#+DATE: <2023-10-01 Sun>
+#+OPTIONS: toc:nil
+
+* Answer 2
+In this problem, I will investigate the influence of number of epochs a two
+layer neural is trained on the accuracy of the model. I investigate for five different types of functions.
+
+** Smooth vs Non-smooth function
+For the smooth function, I use the function $f(x) = x$, and for the
+non-smooth function, I use the function $f(x) = x - \lfloor x \rfloor$.
+
+As indicated in the graph below, the non-smooth is more difficult to train than
+the smooth function. I.e, it reaches low loss in later epochs. The accuracy of
+the model for the non-smooth function also starts out to be worse than that of
+the smooth function.
+
+[[file:plots/convergence_smooth vs non-smooth.png]]
+
+**
