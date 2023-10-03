@@ -21,7 +21,7 @@ def high_freq(x):
     return np.sin(5*x) + np.cos(5*x)
 
 def low_freq(x):
-    return sin(x) + cos(x)
+    return np.sin(x) + np.cos(x)
 
 def cantor(x, level=10):
     if level == 0:
@@ -35,10 +35,10 @@ def cantor(x, level=10):
 
 
 def weierstrass(x , a = 0.5, b = 3, n =25):
-    return sum([a**i * cos(b**i * np.pi * x) for i in range(n)])
+    return sum([a**i * np.cos(b**i * np.pi * x) for i in range(n)])
 
 def periodic_data(x):
-    return sin(2 * np.pi * x)
+    return np.sin(2 * np.pi * x)
 
 def non_periodic_data(x):
     return x**2
@@ -51,10 +51,10 @@ def non_smooth_data(x):
     return x - np.floor(x)
 
 def noisy_data(x):
-    return sin(2 * np.pi * x) + np.random.normal(0, 0.1, len(x))
+    return np.sin(2 * np.pi * x) + np.random.normal(0, 0.1, len(x))
 
 def non_noisy_data(x):
-    return sin(2 * np.pi * x)
+    return np.sin(2 * np.pi * x)
 
 
 def train_loop(x,y,model,num_epochs,learning_rate,loss_fn,optimizer):
@@ -84,24 +84,23 @@ def main():
     model1 = NeuralNetwork()
     model2 = NeuralNetwork()
 
-    num_epochs = 100
+    num_epochs = 1000
     learning_rate = 0.001
 
-    func_type = "smooth vs non-smooth"
+    func_type = "werid functions"
     xtrain = np.random.uniform(0, 1, 200)
-    ytrain_s = smooth_data(xtrain)
-    ytrain_ns = non_smooth_data(xtrain)
+    ytrain_s = np.array([cantor(x) for x in xtrain])
+    ytrain_ns = np.array([weierstrass(x) for x in xtrain])
 
     loss_fn = nn.MSELoss()
-    # loss_fn = nn.CrossEntropyLoss()
     optimizer1 = torch.optim.SGD(model1.parameters(), lr=learning_rate)
     optimizer2 = torch.optim.SGD(model2.parameters(), lr=learning_rate)
 
     convergence_s = train_loop(xtrain, ytrain_s, model1, num_epochs, learning_rate, loss_fn, optimizer1)
     convergence_ns = train_loop(xtrain, ytrain_ns, model2, num_epochs, learning_rate, loss_fn, optimizer2)
 
-    plt.plot(convergence_s, label = "smooth")
-    plt.plot(convergence_ns, label = "non-smooth")
+    plt.plot(convergence_s, label = "cantor")
+    plt.plot(convergence_ns, label = "weierstrass")
     plt.legend()
     plt.title("Convergence of Neural Network for " + func_type)
     plt.xlabel("Epoch")
