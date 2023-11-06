@@ -1,0 +1,26 @@
+#+TITLE: Multi-scale Modeling
+
+* Modeling
+- Different scale: QM -> MD -> Kinetic Theory -> Continuum Mechanics
+
+** Two regimes
+- Sequential coupling: compute the macro scale model from micro
+- Concurrent coupling: coupling micro scale model with macro and compute on the fly
+
+** Sequential Learning
+- Collect data, label them and then train
+
+** Concurrent Learning
+- Generate data on the fly
+
+** Active Learning
+- unlabeled data, like unsupervised learning
+
+
+** Deep Learning to help MD
+- Preserving symmetry helps speed up MD simulation with DL
+  1) E.g: translational and rotational symmetry
+  2) Permutational symmetry, but there might be discontinuity on PES
+
+** To solve Boltzman Equation
+- Use Moment Method
